@@ -9,7 +9,7 @@ public:
      
         int result = str.length();
         for (int i = index; i < arr.size(); i++)
-            result = max(ret, maxLength(arr, str+arr[i], i+1));
+            result = max(result, maxLength(arr, str+arr[i], i+1));
 
         return result;
     }
