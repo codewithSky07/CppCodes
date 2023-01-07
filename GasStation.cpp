@@ -4,8 +4,8 @@ public:
         
           //greedy problem O(n)
         
-        int totalcost = 0;
-        int currcost=0;
+        int totalgas = 0;
+        int currgas=0;
         int startIndex =0;
         
         
@@ -13,18 +13,18 @@ public:
         {
             // (gas-cost) add in total and currcost.
             
-            currcost +=gas[i]-cost[i];
-            // if ans exists value net cost should be positive.
-            totalcost+=gas[i]-cost[i];
+            currgas +=gas[i]-cost[i];
+            // if ans exists value net cost should be positive. As(to)
+            totalgas+=gas[i]-cost[i];
             
             //if currcost is -ve then reintialize startindex.
-            if(currcost<0){
+            if(currgas<0){
                 startIndex = i+1;
-                currcost=0;
+                currgas=0;
             }
         }
 
-        return totalcost>=0 ? startIndex:-1;
+        return totalgas>=0 ? startIndex:-1;
     
     
     }
