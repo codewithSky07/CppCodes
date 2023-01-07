@@ -11,10 +11,10 @@ public:
         
         for(int i=0;i<gas.size();i++)
         {
-            // (gas-cost) add in total and currcost.
+            // (gas-cost) add in total and currgas.
             
             currgas +=gas[i]-cost[i];
-            // if ans exists value net cost should be positive. As(to)
+            // if ans exists value net cost/gas should be positive. As(to)
             totalgas+=gas[i]-cost[i];
             
             //if currcost is -ve then reintialize startindex.
