@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class DSU
+{
+  private:
+    vector<int> parent;
+    vector<int> rank;
+
+  public:
+    DSU(int n) {
+      parent.resize(n);
+      rank.resize(n, 0);  // Resizes and initializes rank to 0
+
+      for (int i = 0; i < n; i++) {
+        parent[i] = i;   // Each element is its own parent initially
+      }
+    }
+
+    int find(int a) {
+      if (a == parent[a]) return a;
+      return parent[a] = find(parent[a]);  // Path compression
+    }
+
+    void Union(int a, int b) {
+      int a_parent = find(a);
+      int b_parent = find(b);
+
+      if (a_parent == b_parent) return;  // They are already in the same set
+
+      // Union by rank
+      if (rank[a_parent] < rank[b_parent]) {
+        parent[a_parent] = b_parent;
+      } else if (rank[b_parent] < rank[a_parent]) {
+        parent[b_parent] = a_parent;
+      } else {
+        parent[b_parent] = a_parent;
+        rank[a_parent]++;
+      }
+    }
+};
+
+int main() {
+  int n;
+  cout << "Enter the number of elements: ";
+  cin >> n;
+
+  DSU dsu(n);
+
+  dsu.Union(1, 2);
+  dsu.Union(4, 1);
+
+  cout << dsu.find(1) << endl;
+
+  return 0;
+}
